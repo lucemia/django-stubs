@@ -44,7 +44,7 @@ class NamedValuesListIterable(ValuesListIterable[NamedTuple]):
 class FlatValuesListIterable(BaseIterable[_T]):
     def __iter__(self) -> Iterator[_T]: ...
 
-class QuerySet(Generic[_Model, _Row], Iterable[_Row], Sized):
+class QuerySet(Generic[_Model, _Row], Sequence[_Row], Sized):
     model: type[_Model]
     query: Query
     _iterable_class: type[BaseIterable]
