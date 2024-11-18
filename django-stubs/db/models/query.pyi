@@ -1,6 +1,6 @@
 import datetime
 from collections.abc import AsyncIterator, Collection, Iterable, Iterator, Mapping, Sequence, Sized
-from typing import Any, Generic, NamedTuple, overload
+from typing import Any, Generic, NamedTuple, overload, Collection
 
 from django.db.backends.utils import _ExecuteQuery
 from django.db.models import Manager
@@ -44,7 +44,7 @@ class NamedValuesListIterable(ValuesListIterable[NamedTuple]):
 class FlatValuesListIterable(BaseIterable[_T]):
     def __iter__(self) -> Iterator[_T]: ...
 
-class QuerySet(Generic[_Model, _Row], Sequence[_Row], Sized):
+class QuerySet(Generic[_Model, _Row], Collection[_Row], Sized):
     model: type[_Model]
     query: Query
     _iterable_class: type[BaseIterable]
